@@ -1,6 +1,4 @@
-*.cache
-*/obj/Release/*
-*/obj/Debug/*
-*/TemporaryGeneratedFile_*
-
-
+**.cache
+**/obj/Release/*
+**/obj/Debug/*
+**/TemporaryGeneratedFile_*.cs
