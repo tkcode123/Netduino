@@ -1,0 +1,6 @@
+*.cache
+*/obj/Release/*
+*/obj/Debug/*
+*/TemporaryGeneratedFile_*
+
+
