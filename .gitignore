@@ -1,4 +1,13 @@
-**.cache
+**/TemporaryGeneratedFile_*.cs
 **/obj/Release/*
 **/obj/Debug/*
-**/TemporaryGeneratedFile_*.cs
+
+*.cache
+*.exe
+*.pdb
+*.pdbx
+*.pe
+*.exe
+*.dll
+*.suo
+
