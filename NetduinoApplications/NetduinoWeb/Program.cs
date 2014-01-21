@@ -16,33 +16,31 @@ namespace NetduinoWeb
         {
             bool isEmulator = (Microsoft.SPOT.Hardware.SystemInfo.SystemID.SKU == 3);
             TimeSpan last = new TimeSpan(-2, 0, 0, 0);
-            while (true)
+            BlinkStart();
+            if (isEmulator || TKCode123.Net.NetUtils.EnsureNetworkIsAvailable((x) => x.WaitSeconds(2)))
             {
-                BlinkStart();
-                if (isEmulator || TKCode123.Net.NetUtils.EnsureNetworkIsAvailable((x) => x.WaitSeconds(2)))
+                if (isEmulator == false)
                 {
-                    if (isEmulator == false)
+                    var now = Microsoft.SPOT.Hardware.Utility.GetMachineTime();
+                    if (now - last > new TimeSpan(1, 0, 0, 0))
                     {
-                        var now = Microsoft.SPOT.Hardware.Utility.GetMachineTime();
-                        if (now - last > new TimeSpan(1, 0, 0, 0))
+                        last = now;
+                        DateTime networkTime;
+                        if (TKCode123.Net.Ntp.NtpClient.TryGetNetworkTime(out networkTime))
                         {
-                            last = now;
-                            DateTime networkTime;
-                            if (TKCode123.Net.Ntp.NtpClient.TryGetNetworkTime(out networkTime))
-                            {
-                                Microsoft.SPOT.Hardware.Utility.SetLocalTime(networkTime);
-                                TKCode123.Debugger.Write("Network time obtained: ", networkTime);
-                            }
-                            else
-                                BlinkError();
+                            Microsoft.SPOT.Hardware.Utility.SetLocalTime(networkTime);
+                            TKCode123.Debugger.Write("Network time obtained: ", networkTime);
                         }
-                    }
-                    using (var web = new Server(8888, null))
-                    {
-                        web.Handle();
+                        else
+                            BlinkError();
                     }
                 }
+                using (var web = new Server(8888, null))
+                {
+                    web.Handle();
+                }
             }
+            Microsoft.SPOT.Hardware.PowerState.RebootDevice(false);
         }
         
         private static void BlinkStart()

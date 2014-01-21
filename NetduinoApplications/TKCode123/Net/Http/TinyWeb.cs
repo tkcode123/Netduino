@@ -66,13 +66,27 @@ namespace TKCode123.Net.Http
                         _calls++;
 
                         PreHandle();
+                        
+                        try
+                        {
+                            DebugOut(req.Request, false);
 
-                        DebugOut(req.Request, false);
+                            var ctx = CreateContext(req);
+                            _ok = Handle(ctx);
 
-                        var ctx = CreateContext(req);
-                        _ok = Handle(ctx);
-
-                        DebugOut(req.Response, false);
+                            DebugOut(req.Response, false);
+                        }
+                        catch (Exception e)
+                        {
+                            Debugger.Write(e.ToString());
+                            try
+                            {
+                                req.Close();
+                            }
+                            catch
+                            {
+                            }
+                        }
 
                         PostHandle();
                     }
@@ -116,7 +130,7 @@ namespace TKCode123.Net.Http
             return Respond(context, HttpStatusCode.NotFound, true, "text/html", false, PageNotFound);
         }
 
-        protected virtual bool Respond(TinyContext context, HttpStatusCode code, bool replaceSyms, string contentType, bool dontCache, string content)
+        protected virtual bool Respond(TinyContext context, HttpStatusCode code, bool replaceSyms, string contentType, bool dontCache, object content)
         {
             try
             {
@@ -125,8 +139,18 @@ namespace TKCode123.Net.Http
                     response.StatusCode = (int)code;
                     if (dontCache) response.Headers.Add("cache-control", "dont-cache");
                     if (contentType != null) response.ContentType = contentType;
-                    if (context.ClientContext.Request.KeepAlive) response.KeepAlive = true;
-                    new ReplacingUTF8Encoder(context, replaceSyms, response.OutputStream).Encode(content);
+                    //if (context.ClientContext.Request.KeepAlive) response.KeepAlive = true;
+                    if (content.GetType() == typeof(string))
+                    {
+                        response.ContentEncoding = System.Text.Encoding.UTF8;
+                        new ReplacingUTF8Encoder(context, replaceSyms, response.OutputStream).Encode(content.ToString());
+                    }
+                    else if (content is byte[])
+                    {
+                        byte [] arr = content as byte[];
+                        response.ContentLength64 = arr.Length;
+                        response.OutputStream.Write(arr, 0, arr.Length);
+                    }
                     response.OutputStream.Close();
                     return true;
                 }
