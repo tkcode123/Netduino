@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetduinoPlus2Application1", "NetduinoPlus2Application1\NetduinoPlus2Application1.csproj", "{1F3AEDF3-8B37-4783-99E0-246F71E71921}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TKCode123", "TKCode123\TKCode123.csproj", "{6C58FB51-FE2E-4BBF-9A42-220B82EB4C5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetduinoWeb", "NetduinoWeb\NetduinoWeb.csproj", "{D80CB1D9-832D-483F-9A6D-E49B872DDB98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,16 @@ Global
 		{1F3AEDF3-8B37-4783-99E0-246F71E71921}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F3AEDF3-8B37-4783-99E0-246F71E71921}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1F3AEDF3-8B37-4783-99E0-246F71E71921}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{6C58FB51-FE2E-4BBF-9A42-220B82EB4C5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C58FB51-FE2E-4BBF-9A42-220B82EB4C5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C58FB51-FE2E-4BBF-9A42-220B82EB4C5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C58FB51-FE2E-4BBF-9A42-220B82EB4C5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D80CB1D9-832D-483F-9A6D-E49B872DDB98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D80CB1D9-832D-483F-9A6D-E49B872DDB98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D80CB1D9-832D-483F-9A6D-E49B872DDB98}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D80CB1D9-832D-483F-9A6D-E49B872DDB98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D80CB1D9-832D-483F-9A6D-E49B872DDB98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D80CB1D9-832D-483F-9A6D-E49B872DDB98}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

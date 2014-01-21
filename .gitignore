@@ -13,3 +13,7 @@
 
 
 NetduinoApplications/NetduinoApplications.jcsettings.xml
+netduino2firmware_4.2.2/
+*.dat
+*.smd
+*.user

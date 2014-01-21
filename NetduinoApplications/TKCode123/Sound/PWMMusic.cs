@@ -1,26 +1,26 @@
 using System;
-using Microsoft.SPOT;
 using Microsoft.SPOT.Hardware;
 using System.Threading;
 
-namespace NetduinoPlus2Application1
+namespace TKCode123.Sound
 {
     public class PWMMusic : IDisposable
     {
-        private PWM pwm;
+        public const string HappyBirthday = "g8g8 a4 g4 C4 h2 g8g8 a4 g4 D4 C2 g8g8 G4 E4 C4 h4 a2 F8F8 E4 C4 D4 C1";
+        private PWM _pwm;
 
         public PWMMusic(Cpu.PWMChannel channel)
         {
-            pwm = new PWM(channel, 10000.0, 0.5, false);
+            _pwm = new PWM(channel, 10000.0, 0.5, false);
         }
 
         public void Dispose()
         {
-            if (pwm != null)
+            if (_pwm != null)
             {
-                pwm.Stop();
-                pwm.Dispose();
-                pwm = null;
+                _pwm.Stop();
+                _pwm.Dispose();
+                _pwm = null;
             }
         }
 
@@ -71,10 +71,10 @@ namespace NetduinoPlus2Application1
                     double n = freqs[idx + 1];
                     freq = (freq + n) / 2;
                 }
-                pwm.Frequency = freq;
-                pwm.Start();
+                _pwm.Frequency = freq;
+                _pwm.Start();
                 Thread.Sleep(ms);
-                pwm.Stop();
+                _pwm.Stop();
             }
             else if (note == 'x')
             {
