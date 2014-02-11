@@ -1,15 +1,14 @@
 using System;
-using Microsoft.SPOT;
-using TKCode123.Net.Http;
-using System.Security.Cryptography.X509Certificates;
-using Microsoft.SPOT.Hardware;
-using SecretLabs.NETMF.Hardware.NetduinoPlus;
-using Microsoft.SPOT.Net.NetworkInformation;
 using System.Text;
-using System.Collections;
 using System.Net;
 using System.Reflection;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
+using TKCode123.Net.Http;
+using Microsoft.SPOT.Hardware;
+using SecretLabs.NETMF.Hardware.NetduinoPlus;
+using Microsoft.SPOT.Net.NetworkInformation;
+using Microsoft.SPOT;
 
 namespace NetduinoWeb
 {
